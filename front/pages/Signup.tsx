@@ -59,7 +59,7 @@ const Signup: React.FC = () => {
     <div className='flex items-center justify-center min-h-screen bg-gray-100'>
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md hover:shadow-xl">
         <h2 className="text-2xl font-semibold text-center mb-6">Registre-se em nosso App!</h2>
-        <form className="flex flex-col p-5 items-center">
+        <form className="flex flex-col p-3 items-center">
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700" htmlFor="email">
               Seu melhor e-mail:
