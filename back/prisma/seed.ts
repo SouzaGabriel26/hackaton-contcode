@@ -1,6 +1,9 @@
 import { prismaClient } from "../lib/prismaClient";
 
 async function main() {
+  await prismaClient.users.deleteMany();
+  await prismaClient.categories.deleteMany();
+
   await prismaClient.categories.createMany({
     data: [
       { name: "Pizzaria" },
