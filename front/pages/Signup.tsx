@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom';
 
 const Signup: React.FC = () => {
 
@@ -18,7 +19,7 @@ const Signup: React.FC = () => {
     state: '',
   })
 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement| HTMLSelectElement>) => {
     setUserInfos({
       ...userInfos,
       [e.target.name]: e.target.value
@@ -142,6 +143,9 @@ const Signup: React.FC = () => {
             Registrar
           </button>
         </form>
+        <div className=' flex flex-row items-center justify-center'>
+          <p>Já possui uma conta? <Link className='text-darkRed hover:underline' to= "/signin">Entrar.</Link></p>
+        </div>
       </div>
     </div>
   );
