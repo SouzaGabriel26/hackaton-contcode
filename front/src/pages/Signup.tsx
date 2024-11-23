@@ -26,7 +26,13 @@ const Signup: React.FC = () => {
     })
   }
 
+  const handleSubmit = (e:React.FormEvent) =>{
+    e.preventDefault()
+    console.log(userInfos)
+  }
+
   const states = [
+    { label: "", value: "" },
     { label: "Acre", value: "AC" },
     { label: "Alagoas", value: "AL" },
     { label: "Amapá", value: "AP" },
@@ -60,7 +66,7 @@ const Signup: React.FC = () => {
     <div className='flex items-center justify-center min-h-screen bg-gray-100'>
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md hover:shadow-xl">
         <h2 className="text-2xl font-semibold text-center mb-6">Registre-se em nosso App!</h2>
-        <form className="flex flex-col p-3 items-center">
+        <form onSubmit={handleSubmit} className="flex flex-col p-3 items-center">
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700" htmlFor="email">
               Seu melhor e-mail:
@@ -71,7 +77,7 @@ const Signup: React.FC = () => {
               id="email"
               name="email"
               placeholder="Digite seu email aqui"
-              
+              required
               onChange={handleInputChange}
             />
           </div>
@@ -83,6 +89,7 @@ const Signup: React.FC = () => {
               id="password"
               name="password"
               placeholder="Digite sua senha"
+              required
               onChange={handleInputChange}
             />
           </div>
@@ -94,6 +101,7 @@ const Signup: React.FC = () => {
               id="name"
               name="name"
               placeholder="Digite seu nome"
+              required
               onChange={handleInputChange}
             />
           </div>
@@ -105,6 +113,7 @@ const Signup: React.FC = () => {
               id="businessName"
               name="businessName"
               placeholder="Digite o nome do seu negócio"
+              required
               onChange={handleInputChange}
             />
           </div>
@@ -116,8 +125,10 @@ const Signup: React.FC = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               name="categoryId"
               id="categoryId"
+              required
               onChange={handleInputChange}
             >
+              <option value=""></option>
               <option value="hamburguer">Hamburgueria</option>
               <option value="pizza">Pizzaria</option>
               <option value="acai">Loja de Açaí</option>
@@ -129,6 +140,7 @@ const Signup: React.FC = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               name="state"
               id="stte"
+              required
               onChange={handleInputChange}
             >
               {states.map((state) => (
