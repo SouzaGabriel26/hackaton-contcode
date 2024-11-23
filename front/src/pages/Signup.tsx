@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import axios from 'axios';
+import React, {ErrorInfo, useState} from 'react'
 import { Link } from 'react-router-dom';
 
 const Signup: React.FC = () => {
+
+  const [statusMessage, setStatusMessage] = useState<string>('')
 
   const [userInfos, setUserInfos] = useState<{
     email: string,
@@ -26,9 +29,18 @@ const Signup: React.FC = () => {
     })
   }
 
-  const handleSubmit = (e:React.FormEvent) =>{
+  const handleSubmit = async (e:React.FormEvent) =>{
     e.preventDefault()
     console.log(userInfos)
+
+    try{
+      const response = await axios.post('http://localhost:3000/sign-up', userInfos)
+      if(response){
+        console.log('Sucesso!')
+      }
+    }catch(error){
+      console.log(error)
+    }
   }
 
   const states = [
