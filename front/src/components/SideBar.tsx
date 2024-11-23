@@ -1,30 +1,25 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import {
-  FaHome,
-  FaUserAlt,
-  FaCogs,
-  FaHistory,
   FaArrowLeft,
   FaArrowRight,
+  FaCogs,
+  FaHistory,
+  FaHome,
+  FaUserAlt,
 } from "react-icons/fa"; // Importando ícones
+import { NavLink } from "react-router-dom";
+import { useSidebarContext } from "../context/SidebarContext";
 
 const SideBar: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const { isSidebarOpen, toggleSidebar } = useSidebarContext();
 
   return (
     <div
-      className={`transition-all duration-300 fixed top-0 left-0 h-screen z-30 bg-white shadow-lg text-darkRed flex flex-col ${
-        isSidebarOpen ? "w-64" : "w-20"
-      }`}
+      className={`transition-all duration-300 fixed top-0 left-0 h-screen z-30 bg-white shadow-lg text-darkRed flex flex-col ${isSidebarOpen ? "w-64" : "w-20"}`}
     >
       {/* Botão de expandir/minimizar no canto superior direito da sidebar */}
       <div
-        className="absolute top-4 right-0 cursor-pointer"
+        className="absolute top-4 right-7 cursor-pointer"
         onClick={toggleSidebar}
       >
         {isSidebarOpen ? (
@@ -49,22 +44,19 @@ const SideBar: React.FC = () => {
             <NavLink
               to="/dashboard"
               className={({ isActive }) =>
-                `flex items-center p-4 transition ${
-                  isActive
-                    ? "bg-lightRed text-white font-bold"
-                    : "hover:bg-lightRed hover:text-white text-darkRed"
+                `flex items-center p-4 transition ${isActive
+                  ? "bg-lightRed text-white font-bold"
+                  : "hover:bg-lightRed hover:text-white text-darkRed"
                 }`
               }
             >
               <FaHome
-                className={`${
-                  !isSidebarOpen ? "ml-0" : "ml-3"
-                } text-xl transition-colors duration-200`}
+                className={`${!isSidebarOpen ? "ml-0" : "ml-3"
+                  } text-xl transition-colors duration-200`}
               />
               <span
-                className={`${
-                  !isSidebarOpen ? "hidden" : ""
-                } ml-3 transition-colors duration-200`}
+                className={`${!isSidebarOpen ? "hidden" : ""
+                  } ml-3 transition-colors duration-200`}
               >
                 Principal
               </span>
@@ -75,22 +67,19 @@ const SideBar: React.FC = () => {
             <NavLink
               to="/profile"
               className={({ isActive }) =>
-                `flex items-center p-4 transition ${
-                  isActive
-                    ? "bg-lightRed text-white font-bold"
-                    : "hover:bg-lightRed hover:text-white text-darkRed"
+                `flex items-center p-4 transition ${isActive
+                  ? "bg-lightRed text-white font-bold"
+                  : "hover:bg-lightRed hover:text-white text-darkRed"
                 }`
               }
             >
               <FaUserAlt
-                className={`${
-                  !isSidebarOpen ? "ml-0" : "ml-3"
-                } text-xl transition-colors duration-200`}
+                className={`${!isSidebarOpen ? "ml-0" : "ml-3"
+                  } text-xl transition-colors duration-200`}
               />
               <span
-                className={`${
-                  !isSidebarOpen ? "hidden" : ""
-                } ml-3 transition-colors duration-200`}
+                className={`${!isSidebarOpen ? "hidden" : ""
+                  } ml-3 transition-colors duration-200`}
               >
                 Editar perfil
               </span>
@@ -99,24 +88,21 @@ const SideBar: React.FC = () => {
           {/* Criar orçamento */}
           <li>
             <NavLink
-              to="/settings"
+              to="/create-budget"
               className={({ isActive }) =>
-                `flex items-center p-4 transition ${
-                  isActive
-                    ? "bg-lightRed text-white font-bold"
-                    : "hover:bg-lightRed hover:text-white text-darkRed"
+                `flex items-center p-4 transition ${isActive
+                  ? "bg-lightRed text-white font-bold"
+                  : "hover:bg-lightRed hover:text-white text-darkRed"
                 }`
               }
             >
               <FaCogs
-                className={`${
-                  !isSidebarOpen ? "ml-0" : "ml-3"
-                } text-xl transition-colors duration-200`}
+                className={`${!isSidebarOpen ? "ml-0" : "ml-3"
+                  } text-xl transition-colors duration-200`}
               />
               <span
-                className={`${
-                  !isSidebarOpen ? "hidden" : ""
-                } ml-3 transition-colors duration-200`}
+                className={`${!isSidebarOpen ? "hidden" : ""
+                  } ml-3 transition-colors duration-200`}
               >
                 Criar orçamento
               </span>
@@ -127,22 +113,19 @@ const SideBar: React.FC = () => {
             <NavLink
               to="/history"
               className={({ isActive }) =>
-                `flex items-center p-4 transition ${
-                  isActive
-                    ? "bg-lightRed text-white font-bold"
-                    : "hover:bg-lightRed hover:text-white text-darkRed"
+                `flex items-center p-4 transition ${isActive
+                  ? "bg-lightRed text-white font-bold"
+                  : "hover:bg-lightRed hover:text-white text-darkRed"
                 }`
               }
             >
               <FaHistory
-                className={`${
-                  !isSidebarOpen ? "ml-0" : "ml-3"
-                } text-xl transition-colors duration-200`}
+                className={`${!isSidebarOpen ? "ml-0" : "ml-3"
+                  } text-xl transition-colors duration-200`}
               />
               <span
-                className={`${
-                  !isSidebarOpen ? "hidden" : ""
-                } ml-3 transition-colors duration-200`}
+                className={`${!isSidebarOpen ? "hidden" : ""
+                  } ml-3 transition-colors duration-200`}
               >
                 Histórico de orçamentos
               </span>
