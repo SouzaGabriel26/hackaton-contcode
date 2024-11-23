@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignIn: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      alert('Please fill in all fields.');
+      alert("Please fill in all fields.");
     } else {
-      console.log('Logged In:', { email, password });
-      alert('Sign In successful!');
+      console.log("Logged In:", { email, password });
+      alert("Sign In successful!");
     }
   };
 
@@ -20,7 +21,10 @@ const SignIn: React.FC = () => {
         <h1 className="text-2xl font-semibold text-center mb-6">Sign In</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -34,7 +38,10 @@ const SignIn: React.FC = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Senha
             </label>
             <input
@@ -49,15 +56,15 @@ const SignIn: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="w-full py-2 px-4 bg-lightPink text-white rounded-md shadow hover:bg-lightRed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Sign In
           </button>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
-          Não tem uma conta?{' '}
-          <a href="#" className="text-indigo-600 hover:underline">
-            Registre-se aqui
+          Não tem uma conta?{" "}
+          <a href="#" className="text-darkRed hover:underline">
+            <Link to="/signon">Registre-se aqui</Link>
           </a>
         </p>
       </div>
