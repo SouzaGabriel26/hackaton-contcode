@@ -12,7 +12,7 @@ export default {
         lightRed: '#B03851',
         lightPink: '#EF3353',
         brightOrange: '#F17144',
-        darkYellow: '#F48036'
+        darkYellow: '#F4B036'
       }
     },
   },
