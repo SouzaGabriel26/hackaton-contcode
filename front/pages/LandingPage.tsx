@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 const LandingPage = () => {
   return (
     <div>
-      <nav className="flex justify-end gap-3 mr-3 mt-3 mb-3">
+      <nav className="flex justify-end gap-3 pr-3 pt-3 pb-3 text-white font-bold bg-brightOrange">
         <Link to="/signin">Entrar</Link>
-        <Link to="/signup">Criar conta</Link>
+        <Link to="/signup">Criar conta</Link> 
       </nav>
 
-      <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center p-6 ">
-        <header className="text-center mb-36">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+      <div className="bg-gray-100 h-[90vh] flex flex-col justify-center items-center">
+        <header className="text-center mb-28">
+          <h1 className="text-4xl font-bold text-darkRed mb-4">
             Seu Orçamento Gastronômico na Palma da Mão
           </h1>
           <p className="text-lg text-gray-600">
@@ -21,7 +21,7 @@ const LandingPage = () => {
         </header>
 
         <main className="bg-white shadow-md rounded-lg w-full max-w-3xl p-8">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-6">
+          <h2 className="text-2xl font-semibold text-lightRed mb-6">
             Como Funciona
           </h2>
           <ol className="list-decimal list-inside text-gray-600 mb-8">
@@ -35,7 +35,7 @@ const LandingPage = () => {
             </li>
           </ol>
 
-          <h3 className="text-xl font-semibold text-gray-700 mb-4">
+          <h3 className="text-xl font-semibold text-lightRed mb-4">
             Por que escolher nosso serviço?
           </h3>
           <ul className="list-disc list-inside text-gray-600 mb-8">
@@ -44,9 +44,9 @@ const LandingPage = () => {
             <li>Rápido, simples e sem complicações.</li>
           </ul>
 
-          <div className="text-center">
-            <Link to="/signin" className="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-600 transition">
-            Comece Agora!
+          <div className="text-center py-5">
+            <Link to="/signin" className="bg-lightPink text-white font-bold py-3 px-6 rounded-lg hover:bg-lightRed transition">
+            Comece agora!
             </Link>
           </div>
         </main>
@@ -57,7 +57,7 @@ const LandingPage = () => {
             &copy; 2024 Seu Orçamento Gastronômico. Todos os direitos
             reservados.
           </p>
-        </footer>
+      </footer>
     </div>
   );
 };
