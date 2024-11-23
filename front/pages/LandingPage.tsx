@@ -5,7 +5,7 @@ const LandingPage = () => {
     <div>
        <h1>LandingPage</h1>
        <Link to="/signin">Criar conta</Link>
-       <Link to="/signin">Entrar</Link>
+       <Link to="/signon">Entrar</Link>
     </div>
   )
 }
