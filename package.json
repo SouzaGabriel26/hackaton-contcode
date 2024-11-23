@@ -1,0 +1,13 @@
+{
+  "name": "hackaton-contcode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "front": "cd front && npm run dev",
+    "back": "cd back && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
