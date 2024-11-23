@@ -65,14 +65,14 @@ const Signup: React.FC = () => {
   return (
     <div className='flex items-center justify-center min-h-screen bg-gray-100'>
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md hover:shadow-xl">
-        <h2 className="text-2xl font-semibold text-center mb-6">Registre-se em nosso App!</h2>
+        <h2 className="text-2xl font-semibold text-center text-darkRed mb-6">Registre-se em nosso App!</h2>
         <form onSubmit={handleSubmit} className="flex flex-col p-3 items-center">
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="email">
               Seu melhor e-mail:
             </label>
             <input
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               type="email"
               id="email"
               name="email"
@@ -81,10 +81,10 @@ const Signup: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="password">Senha:</label>
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="password">Senha:</label>
             <input
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               type="password"
               id="password"
               name="password"
@@ -93,10 +93,10 @@ const Signup: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">Seu nome:</label>
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="name">Seu nome:</label>
             <input
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               type="text"
               id="name"
               name="name"
@@ -105,10 +105,10 @@ const Signup: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="businessName">Nome da sua loja:</label>
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="businessName">Nome da sua loja:</label>
             <input
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               type="text"
               id="businessName"
               name="businessName"
@@ -117,34 +117,34 @@ const Signup: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="categoryId">
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="categoryId">
               Selecione o tipo do seu restaurante:
             </label>
             <select
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               name="categoryId"
               id="categoryId"
               required
               onChange={handleInputChange}
             >
               <option value=""></option>
-              <option value="hamburguer">Hamburgueria</option>
-              <option value="pizza">Pizzaria</option>
-              <option value="acai">Loja de Açaí</option>
+              <option className='text-darkRed font-semibold' value="hamburguer">Hamburgueria</option>
+              <option className='text-darkRed font-semibold' value="pizza">Pizzaria</option>
+              <option className='text-darkRed font-semibold' value="acai">Loja de Açaí</option>
             </select>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="state">Escolha seu estado:</label>
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="state">Escolha seu estado:</label>
             <select
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               name="state"
               id="stte"
               required
               onChange={handleInputChange}
             >
               {states.map((state) => (
-                <option key={state.label} value={state.value}>{state.label}</option>
+                <option className='text-darkRed font-semibold' key={state.label} value={state.value}>{state.label}</option>
               ))}
             </select>
           </div>
