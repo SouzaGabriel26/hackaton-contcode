@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique
+  name         String
+  passwordHash String   @map("password_hash")
+  businessName String   @map("business_name")
+  state        String
+  categoryId   String   @map("category_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  category Categories @relation(fields: [categoryId], references: [id])
+
+  Budgets Budgets[]
+
+  @@map("users")
+}
+
+model Budgets {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @map("user_id") @db.Uuid
+  name        String
+  description String?
+  initialDate DateTime @map("initial_date")
+  finalDate   DateTime @map("final_date")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  BudgetItems BudgetItems[]
+
+  @@map("budgets")
+}
+
+model BudgetItems {
+  id          String  @id @default(uuid()) @db.Uuid
+  budgetId    String  @map("budget_id") @db.Uuid
+  name        String
+  description String?
+  value       Float
+  quantity    Int
+
+  budget Budgets @relation(fields: [budgetId], references: [id])
+
+  @@map("budget_items")
+}
+
+model Categories {
+  id   String @id @default(uuid()) @db.Uuid
+  name String
+
+  Users Users[]
+
+  @@map("categories")
+}
