@@ -26,14 +26,13 @@ model Users {
 }
 
 model Budgets {
-  id          String   @id @default(uuid()) @db.Uuid
-  userId      String   @map("user_id") @db.Uuid
-  name        String
-  description String?
-  initialDate DateTime @map("initial_date")
-  finalDate   DateTime @map("final_date")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String   @map("user_id") @db.Uuid
+  name           String
+  description    String?
+  providedBudget Float    @map("provided_budget")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -43,12 +42,14 @@ model Budgets {
 }
 
 model BudgetItems {
-  id          String  @id @default(uuid()) @db.Uuid
-  budgetId    String  @map("budget_id") @db.Uuid
-  name        String
-  description String?
-  value       Float
-  quantity    Int
+  id                  String @id @default(uuid()) @db.Uuid
+  budgetId            String @map("budget_id") @db.Uuid
+  name                String
+  description         String
+  category            String
+  unitProductionPrice Float  @map("unit_production_price")
+  unitSellingPrice    Float  @map("unit_selling_price")
+  profitMargin        Float  @map("profit_margin")
 
   budget Budgets @relation(fields: [budgetId], references: [id])
 
