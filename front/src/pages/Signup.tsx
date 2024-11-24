@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { BackToHomeButton } from '../components/BackToHomeButton';
@@ -36,18 +36,11 @@ const states = [
   { label: "Tocantins", value: "TO" },
 ];
 
-const categories = [
-  { id: '', name: '' },
-  { id: '87675745-21b8-4dbc-90bc-bad9d0ec0dbd', name: 'Hamburgueria' },
-  { id: '3e22f08c-c6d8-4c33-a29e-7aa910d4a38d', name: 'Pizzaria' },
-]
-
-
 const Signup: React.FC = () => {
   const navigate = useNavigate();
 
+  const [categories, setCategories] = useState<Array<{ id: string, name: string }>>([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const [userInfos, setUserInfos] = useState<{
     email: string,
     password: string,
@@ -70,6 +63,19 @@ const Signup: React.FC = () => {
       [e.target.name]: e.target.value
     })
   }
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const { data } = await httpClient.get('/categories');
+        setCategories(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchCategories();
+  }, []);
 
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -94,7 +100,6 @@ const Signup: React.FC = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         const errorResponse = error.response?.data.error;
-        console.log(error)
         if (Array.isArray(errorResponse)) {
           toast.error(errorResponse[0].message);
         }

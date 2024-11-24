@@ -26,7 +26,6 @@ const SignIn: React.FC = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         const errorResponse = error.response?.data.error;
-        console.log(errorResponse)
         if (Array.isArray(errorResponse)) {
           toast.error(errorResponse[0].message);
         }
