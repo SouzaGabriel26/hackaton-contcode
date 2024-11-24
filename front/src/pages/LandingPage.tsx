@@ -28,7 +28,7 @@ const LandingPage = () => {
             <li>
               Preencha os dados básicos do seu projeto, como o nome dele e tipo de comércio.
             </li>
-            <li>Informe sua região para receber custos realacionados ao preço local.</li>
+            <li>Informe sua região para receber custos relacionados ao preço local.</li>
             <li>
               Receba um orçamento detalhado com as melhores recomendações e
               custos estimados.
