@@ -92,8 +92,9 @@ const Signup: React.FC = () => {
         state: userInfos.state,
         category_id: userInfos.categoryId
       }
-
+      console.log (signUpPayload)
       await httpClient.post('/sign-up', signUpPayload);
+      
 
       toast.success('Conta criada com sucesso!');
 
@@ -180,8 +181,10 @@ const Signup: React.FC = () => {
               id="categoryId"
               onChange={handleInputChange}
             >
-              <option  value=""></option>
-              <option  value="aea86362-a028-44d5-b220-62cc17ea4e99">Pizzaria</option>
+              <option value=""></option>
+              {categories.map(e=>(
+                <option key={e.id} value={e.id}>{e.name}</option>
+              ))}
                
             </select>
           </div>
