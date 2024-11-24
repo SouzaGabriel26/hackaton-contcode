@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import SideBar from "../components/SideBar";
-import { useSidebarContext } from "../context/SidebarContext";
+import SideBar from "../../components/SideBar";
+import { useSidebarContext } from "../../context/SidebarContext";
 
 const Layout = () => {
   const { isSidebarOpen } = useSidebarContext();
