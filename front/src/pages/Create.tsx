@@ -1,5 +1,8 @@
 import { useState } from "react"
 import { useAuthContext } from "../context/AuthContext"
+import { httpClient } from "../lib/httpClient"
+import toast from "react-hot-toast"
+import { AxiosError } from "axios"
 
 type BudgetProps = {
   name: string,
@@ -25,11 +28,26 @@ const Create: React.FC = () => {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+   async function handleSubmit (e: React.FormEvent)  {
     e.preventDefault()
     console.log(budgetObject)
+    try{
+      await httpClient.post('/budget',budgetObject)
+      toast.success('Success!')
+    } catch (error){
+      if (error instanceof AxiosError) {
+        const errorResponse = error.response?.data.error;
+        if (Array.isArray(errorResponse)) {
+          toast.error(errorResponse[0].message);
+        }
+      } else {
+        toast.error('Ocorreu um erro ao criar a sua conta.')
+      }
+    } 
+    }
 
-  }
+
+  
 
   const conditionalForm = () => {
      
