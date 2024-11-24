@@ -10,13 +10,13 @@ const Dashboard = () => {
   useEffect(() => {
     async function fetchBudgets() {
       try {
-        const { data } = await httpClient.get<Budget[]>('/budgets');
+        const { data } = await httpClient.get<Budget[]>("/budgets");
 
         if (data.length > 0) {
           setLastBudget(data[0]);
         }
       } catch {
-        toast.error("Erro ao buscar orçamentos!")
+        toast.error("Erro ao buscar orçamentos!");
       } finally {
         setIsLoading(false);
       }
@@ -25,23 +25,30 @@ const Dashboard = () => {
     fetchBudgets();
   }, []);
 
-  const budgetIngredients = lastBudget?.budgetItems.filter(
-    (item) => item.category === "ingredient"
-  ) ?? [];
+  const budgetIngredients =
+    lastBudget?.budgetItems.filter((item) => item.category === "ingredient") ??
+    [];
 
-  const budgetPlates = lastBudget?.budgetItems.filter(
-    (item) => item.category === "plate"
-  ) ?? [];
+  const budgetPlates =
+    lastBudget?.budgetItems.filter((item) => item.category === "plate") ?? [];
 
   if (loading) {
     return <div>Carregando...</div>;
   }
   if (!lastBudget) {
-    return <div>Sem orçamentos disponiveis</div>;
+    return (
+      <div className="min-h-screen w-full flex justify-center items-center">
+        <span className="text-brightOrange text-xl font-bold">
+          Sem orçamentos disponíveis por enquanto... crie seu primeiro :)
+        </span>
+      </div>
+    );
   }
 
   const { providedBudget } = lastBudget;
-  const maxProduction = Math.floor(providedBudget / budgetPlates[0].unitProductionPrice);
+  const maxProduction = Math.floor(
+    providedBudget / budgetPlates[0].unitProductionPrice
+  );
 
   return (
     <div className="flex flex-col items-center w-full p-5 bg-white text-darkRed">
@@ -67,7 +74,8 @@ const Dashboard = () => {
       </div>
 
       <div className="flex flex-wrap justify-around w-full gap-6">
-        <div className={`
+        <div
+          className={`
           bg-white
           shadow-lg
           rounded-lg
@@ -81,7 +89,8 @@ const Dashboard = () => {
           justify-center
           border
           border-gray-200
-        `}>
+        `}
+        >
           <div className="flex flex-col gap-2">
             <h2 className="text-lg font-bold text-brightOrange">
               Preço de produção estimado:
@@ -132,13 +141,17 @@ const Dashboard = () => {
                 <h3 className="text-sm font-semibold text-gray-600">Nome:</h3>
                 <p className="text-sm mb-2">{ingredient.name}</p>
 
-                <h3 className="text-sm font-semibold text-gray-600">Descrição:</h3>
+                <h3 className="text-sm font-semibold text-gray-600">
+                  Descrição:
+                </h3>
                 <p className="text-sm mb-2">{ingredient.description}</p>
 
                 <h3 className="text-sm font-semibold text-gray-600">
                   Preço total:
                 </h3>
-                <p className="text-sm">R${ingredient.unitProductionPrice.toFixed(2)}</p>
+                <p className="text-sm">
+                  R${ingredient.unitProductionPrice.toFixed(2)}
+                </p>
               </li>
             ))}
           </ul>
@@ -152,25 +165,29 @@ const Dashboard = () => {
         <ul className="space-y-2 overflow-y-auto max-h-64 p-4 bg-white shadow-lg rounded-lg border border-gray-200">
           {budgetPlates.map((plate) => (
             <li key={plate.id} className="border-b border-gray-200 pb-2">
-              <h3 className="text-lg font-bold text-brightOrange">
-                Nome:
-              </h3>
+              <h3 className="text-lg font-bold text-brightOrange">Nome:</h3>
               <p className="text-base mb-4 text-gray-700">{plate.name}</p>
 
               <h3 className="text-lg font-bold text-brightOrange">
                 Descrição:
               </h3>
-              <p className="text-base mb-4 text-gray-700">{plate.description}</p>
+              <p className="text-base mb-4 text-gray-700">
+                {plate.description}
+              </p>
 
               <h3 className="text-lg font-bold text-brightOrange">
                 Preço estimado de produção por unidade:
               </h3>
-              <p className="text-base mb-4 text-gray-700">R$ {plate.unitProductionPrice.toFixed(2)}</p>
+              <p className="text-base mb-4 text-gray-700">
+                R$ {plate.unitProductionPrice.toFixed(2)}
+              </p>
 
               <h3 className="text-lg font-bold text-brightOrange">
                 Preço estimado de venda (com margem de lucro de 50%):
               </h3>
-              <p className="text-base text-gray-700">R$ {plate.unitSellingPrice.toFixed(2)}</p>
+              <p className="text-base text-gray-700">
+                R$ {plate.unitSellingPrice.toFixed(2)}
+              </p>
             </li>
           ))}
         </ul>
