@@ -5,11 +5,7 @@ async function main() {
   await prismaClient.categories.deleteMany();
 
   await prismaClient.categories.createMany({
-    data: [
-      { name: "Pizzaria" },
-      { name: "Hamburgueria" },
-      { name: "Açaiteria" },
-    ],
+    data: [{ name: "Pizzaria" }, { name: "Hamburgueria" }],
   });
 }
 
