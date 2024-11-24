@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 import { httpClient } from "../lib/httpClient";
 import { Budget } from "../types/Budget";
 
-const Dashboard = () => {
+const BudgetDetails = () => {
   const [lastBudget, setLastBudget] = useState<Budget>();
   const [loading, setIsLoading] = useState<boolean>(true);
+
+  const params = useParams();
+
 
   useEffect(() => {
     async function fetchBudgets() {
       try {
-        const { data } = await httpClient.get<Budget[]>('/budgets');
+        const { data } = await httpClient.get<Budget>(`/budgets/${params.id}`);
 
-        if (data.length > 0) {
-          setLastBudget(data[0]);
+        if (data) {
+          setLastBudget(data);
         }
       } catch {
         toast.error("Erro ao buscar orçamentos!")
@@ -23,7 +27,7 @@ const Dashboard = () => {
     }
 
     fetchBudgets();
-  }, []);
+  }, [params.id]);
 
   const budgetIngredients = lastBudget?.budgetItems.filter(
     (item) => item.category === "ingredient"
@@ -40,13 +44,10 @@ const Dashboard = () => {
     return <div>Sem orçamentos disponiveis</div>;
   }
 
-  const { providedBudget } = lastBudget;
-  const maxProduction = Math.floor(providedBudget / budgetPlates[0].unitProductionPrice);
-
   return (
     <div className="flex flex-col items-center w-full p-5 bg-white text-darkRed">
       <div className="w-full mb-2">
-        <h1>Último orçamento feito:</h1>
+        <h1>Orçamento feito em:</h1>
         <span className="block text-sm">
           {lastBudget.createdAt.split("T")[0]}
         </span>
@@ -88,7 +89,7 @@ const Dashboard = () => {
             </h2>
             <h2 className="text-lg font-extrabold text-darkRed">
               R$
-              {budgetPlates[0].unitProductionPrice.toFixed(2)}
+              {budgetPlates[0].unitProductionPrice}
             </h2>
           </div>
 
@@ -98,26 +99,7 @@ const Dashboard = () => {
             </h2>
             <h2 className="text-lg font-extrabold text-darkRed">
               R$
-              {budgetPlates[0].unitSellingPrice.toFixed(2)}
-            </h2>
-          </div>
-
-          <div className="flex flex-col gap-2 justify-start">
-            <h2 className="text-lg font-bold text-brightOrange">
-              Valor inicial fornecido para o orçamento:
-            </h2>
-            <h2 className="text-lg font-extrabold text-darkRed">
-              R$
-              {lastBudget.providedBudget.toFixed(2)}
-            </h2>
-          </div>
-
-          <div className="flex flex-col gap-2 justify-start">
-            <h2 className="text-lg font-bold text-brightOrange">
-              Capacidade de produção (unidades):
-            </h2>
-            <h2 className="text-lg font-extrabold text-darkRed">
-              {maxProduction}
+              {budgetPlates[0].unitSellingPrice}
             </h2>
           </div>
         </div>
@@ -149,25 +131,25 @@ const Dashboard = () => {
         <h1 className="text-2xl font-semibold text-center text-darkRed mb-5">
           Prato principal
         </h1>
-        <ul className="space-y-2 overflow-y-auto max-h-64 p-4 bg-white shadow-lg rounded-lg border border-gray-200">
+        <ul className="space-y-4 overflow-y-auto max-h-64 p-4 bg-white shadow-lg rounded-lg border border-gray-200">
           {budgetPlates.map((plate) => (
             <li key={plate.id} className="border-b border-gray-200 pb-2">
-              <h3 className="text-lg font-bold text-brightOrange">
+              <h3 className="text-lg font-bold text-brightOrange mb-2">
                 Nome:
               </h3>
               <p className="text-base mb-4 text-gray-700">{plate.name}</p>
 
-              <h3 className="text-lg font-bold text-brightOrange">
+              <h3 className="text-lg font-bold text-brightOrange mb-2">
                 Descrição:
               </h3>
               <p className="text-base mb-4 text-gray-700">{plate.description}</p>
 
-              <h3 className="text-lg font-bold text-brightOrange">
+              <h3 className="text-lg font-bold text-brightOrange mb-2">
                 Preço estimado de produção por unidade:
               </h3>
               <p className="text-base mb-4 text-gray-700">R$ {plate.unitProductionPrice.toFixed(2)}</p>
 
-              <h3 className="text-lg font-bold text-brightOrange">
+              <h3 className="text-lg font-bold text-brightOrange mb-2">
                 Preço estimado de venda (com margem de lucro de 50%):
               </h3>
               <p className="text-base text-gray-700">R$ {plate.unitSellingPrice.toFixed(2)}</p>
@@ -179,4 +161,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default BudgetDetails;

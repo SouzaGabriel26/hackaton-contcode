@@ -5,8 +5,7 @@ import {
   FaCogs,
   FaHistory,
   FaHome,
-  FaSignOutAlt,
-  FaUserAlt,
+  FaSignOutAlt
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
@@ -23,11 +22,6 @@ const navigationLinks: NavigationLink[] = [
     path: "/dashboard",
     label: "Principal",
     icon: <FaHome className="text-xl" />,
-  },
-  {
-    path: "/profile",
-    label: "Editar perfil",
-    icon: <FaUserAlt className="text-xl" />,
   },
   {
     path: "/create-budget",
@@ -86,9 +80,8 @@ const SideBar: React.FC = () => {
 
   return (
     <div
-      className={`transition-all duration-100 fixed top-0 left-0 h-screen z-30 bg-white shadow-lg text-darkRed flex flex-col ${
-        isSidebarOpen ? "w-64" : "w-20"
-      } `}
+      className={`transition-all duration-100 fixed top-0 left-0 h-screen z-30 bg-white shadow-lg text-darkRed flex flex-col ${isSidebarOpen ? "w-64" : "w-20"
+        } `}
       onTransitionEnd={() => {
         if (isSidebarOpen) {
           setIsItemsVisible(true);
@@ -96,18 +89,16 @@ const SideBar: React.FC = () => {
       }}
     >
       <div
-        className={`p-4 h-16 border-b border-gray-200 flex items-center ${
-          isSidebarOpen ? "justify-between" : ""
-        }`}
+        className={`p-4 h-16 border-b border-gray-200 flex items-center ${isSidebarOpen ? "justify-between" : ""
+          }`}
       >
         <h2 className={`text-2xl font-bold ${!isSidebarOpen ? "hidden" : ""}`}>
           Menu
         </h2>
 
         <div
-          className={`cursor-pointer ${
-            !isSidebarOpen ? "flex justify-center w-full" : ""
-          } hidden md:block`}
+          className={`cursor-pointer ${!isSidebarOpen ? "flex justify-center w-full" : ""
+            } hidden md:block`}
           onClick={() => {
             toggleSidebar();
             if (isSidebarOpen) {
@@ -126,9 +117,8 @@ const SideBar: React.FC = () => {
       {isMobile ? (
         <div className="flex-1">
           {navigationLinks.map(({ path, icon, label }) => (
-            <nav className="justify-center">
+            <nav key={path} className="justify-center">
               <NavLink
-                key={path}
                 to={path}
                 title={label}
                 className="
@@ -159,11 +149,10 @@ const SideBar: React.FC = () => {
           p-4
           gap-4
           transition
-          ${
-            isActive
-              ? "bg-lightRed text-white justify-start font-bold"
-              : "hover:bg-lightRed hover:text-white text-darkRed"
-          }
+          ${isActive
+                  ? "bg-lightRed text-white justify-start font-bold"
+                  : "hover:bg-lightRed hover:text-white text-darkRed"
+                }
           ${!isSidebarOpen ? "justify-center" : ""}
         `}
             >
