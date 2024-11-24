@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { httpClient } from "../lib/httpClient";
+import toast from "react-hot-toast";
 type BudgetItem = {
     id: number;
     budget_id: number;
@@ -21,6 +23,8 @@ type BudgetItem = {
     updated_at: string; // ISO string
     budget_items: BudgetItem[];
   };
+
+  
   
 const Dashboard = () => {
   const [budgetName, setBudgetName] = useState<string>("");
@@ -31,16 +35,17 @@ const Dashboard = () => {
   const [budgetPlates, setbudgetPlates] = useState<BudgetItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+
+
   useEffect(() => {
-    function fetchData() {
-      fetch("http://localhost:3000/budgets", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((resp) => resp.json())
-        .then((data: Budget[]) => {
+    async function fetchBudgets() {
+  
+      try {
+        // Fazer a requisição
+        const {data} = await httpClient.get<Budget[]>('/budgets');
+        console.log(data)
+    
+        if (data.length > 0) {
           setBudgetName(data[0].name);
           setBudgetDesc(data[0].description);
           setBudgetCost(data[0].provided_budget);
@@ -52,19 +57,24 @@ const Dashboard = () => {
           setbudgetPlates(
             budgetItems.filter(({category}) => category === "plate")
           );
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-        });
+          
+        } 
+        setLoading(false);
+      } catch {
+        toast.error("Erro ao buscar orçamentos!")
+      }
     }
-
-    fetchData();
+    
+    fetchBudgets();
   }, [budgetItems]);
+
+ 
 
   if (loading) {
     return <div>Carregando...</div>;
+  }
+  if (!budgetName) {
+    return <div>Sem orçamentos disponiveis</div>;
   }
 
   return (
