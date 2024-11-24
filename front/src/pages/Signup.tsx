@@ -69,6 +69,7 @@ const Signup: React.FC = () => {
       try {
         const { data } = await httpClient.get('/categories');
         setCategories(data);
+        console.log(data)
       } catch (error) {
         console.error(error);
       }
@@ -179,11 +180,9 @@ const Signup: React.FC = () => {
               id="categoryId"
               onChange={handleInputChange}
             >
-              {
-                categories.map(({ id, name }) => (
-                  <option key={id} value={id}>{name}</option>
-                ))
-              }
+              <option  value=""></option>
+              <option  value="aea86362-a028-44d5-b220-62cc17ea4e99">Pizzaria</option>
+               
             </select>
           </div>
           <div className="mb-4 w-full">
