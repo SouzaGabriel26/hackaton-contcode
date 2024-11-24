@@ -8,10 +8,12 @@ import {
   FaUserAlt,
 } from "react-icons/fa"; // Importando ícones
 import { NavLink } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 import { useSidebarContext } from "../context/SidebarContext";
 
 const SideBar: React.FC = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebarContext();
+  const { signOut } = useAuthContext();
 
   return (
     <div
@@ -135,7 +137,29 @@ const SideBar: React.FC = () => {
       </nav>
 
       {/* Rodapé */}
-      <footer className="p-4 text-center text-sm text-gray-500 border-t border-gray-200"></footer>
+      <footer className="p-4 text-center text-sm text-gray-500 border-t border-gray-200">
+        <button
+          onClick={signOut}
+          className={`
+              w-full
+              disabled:opacity-50
+              disabled:pointer-events-none
+              py-2
+              px-4
+              bg-lightRed
+              text-white
+              rounded-md
+              shadow
+              hover:bg-darkRed
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-indigo-500
+            `}
+        >
+          Sair
+        </button>
+      </footer>
     </div>
   );
 };
