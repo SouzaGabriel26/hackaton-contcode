@@ -115,15 +115,15 @@ const Signup: React.FC = () => {
     <div className='flex relative items-center justify-center min-h-screen bg-gray-100'>
       <BackToHomeButton className="absolute top-4 left-4 hover:scale-110 transition-all" />
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md hover:shadow-xl">
-        <h2 className="text-2xl font-semibold text-center mb-6">Registre-se em nosso App!</h2>
+        <h2 className=" text-darkRed text-2xl font-semibold text-center mb-6">Registre-se em nosso App!</h2>
         <form className="flex flex-col p-3 items-center" onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="email">
               Seu melhor e-mail:
             </label>
             <input
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               type="email"
               id="email"
               name="email"
@@ -132,11 +132,11 @@ const Signup: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="password">Senha:</label>
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="password">Senha:</label>
             <input
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               type="password"
               id="password"
               name="password"
@@ -144,11 +144,11 @@ const Signup: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="name">Seu nome:</label>
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="name">Seu nome:</label>
             <input
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               type="text"
               id="name"
               name="name"
@@ -156,11 +156,11 @@ const Signup: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="businessName">Nome da sua loja:</label>
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="businessName">Nome da sua loja:</label>
             <input
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               type="text"
               id="businessName"
               name="businessName"
@@ -168,13 +168,13 @@ const Signup: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="categoryId">
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="categoryId">
               Selecione o tipo do seu restaurante:
             </label>
             <select
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               name="categoryId"
               id="categoryId"
               onChange={handleInputChange}
@@ -186,12 +186,12 @@ const Signup: React.FC = () => {
               }
             </select>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="state">Escolha seu estado:</label>
+          <div className="mb-4 w-full">
+            <label className="block text-sm font-medium text-darkRed" htmlFor="state">Escolha seu estado:</label>
             <select
               required
               aria-required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-lightRed sm:text-sm"
               name="state"
               id="stte"
               onChange={handleInputChange}
@@ -203,7 +203,7 @@ const Signup: React.FC = () => {
           </div>
           <button
             disabled={isLoading}
-            className="w-full py-2 px-4 bg-lightPink text-white rounded-md shadow hover:bg-lightRed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-3 disabled:opacity-50 disabled:pointer-events-none"
+            className="w-full py-2 px-4 bg-lightPink text-white rounded-md shadow hover:bg-lightRed focus:outline-none focus:ring-2 focus:ring-offset-2  mt-3 disabled:opacity-50 disabled:pointer-events-none"
             type="submit"
           >
             Registrar
